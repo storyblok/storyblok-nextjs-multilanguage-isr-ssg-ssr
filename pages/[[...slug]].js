@@ -67,6 +67,6 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths: paths,
-    fallback: "blocking",
+    fallback: 'blocking',
   }
 }
