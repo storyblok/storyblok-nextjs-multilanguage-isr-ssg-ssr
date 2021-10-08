@@ -1,8 +1,8 @@
 import React from 'react'
-import Layout from '../components/Layout'
-import DynamicComponent from '../components/DynamicComponent'
+import Layout from '../../components/Layout'
+import DynamicComponent from '../../components/DynamicComponent'
 
-import Storyblok, { useStoryblok } from "../utils/storyblok"
+import Storyblok, { useStoryblok } from "../../utils/storyblok"
 
 export default function Page({ story, preview, locale, locales }) {
   const enableBridge = true; // load the storyblok bridge everywhere
@@ -40,8 +40,7 @@ export async function getStaticProps({ locale, locales, params, preview = false 
       preview,
       locale,
       locales,
-    },
-    // revalidate: 15, // enable static content to be updated dynamically every 15 sec
+    }
   }
 }
 
