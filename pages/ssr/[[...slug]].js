@@ -18,7 +18,7 @@ export default function Page({ story, preview, locale, locales }) {
 }
 
 
-export async function getStaticProps({ locale, locales, params, preview = false }) {
+export async function getServerSideProps({ locale, locales, params, preview = false }) {
   let slug = params.slug ? params.slug.join('/') : 'home'
 
   let sbParams = {
@@ -40,34 +40,6 @@ export async function getStaticProps({ locale, locales, params, preview = false 
       preview,
       locale,
       locales,
-    },
-    revalidate: 10, // enable static content to be updated dynamically every 10 sec
-  }
-}
-
-export async function getStaticPaths({ locales }) {
-  let { data } = await Storyblok.get('cdn/links/')
-
-  let paths = []
-  console.log(data)
-  Object.keys(data.links).forEach(linkKey => {
-      if (data.links[linkKey].is_folder) {
-        return
-      }
-
-      // get array for slug because of catch all
-      const slug = data.links[linkKey].slug
-      let splittedSlug = slug.split("/")
-      if(slug === 'home') splittedSlug = false
-
-      // create additional languages
-      for (const locale of locales) {
-        paths.push({ params: { slug: splittedSlug }, locale })
-      }
-  })
-
-  return {
-    paths: paths,
-    fallback: 'blocking',
+    }
   }
 }
