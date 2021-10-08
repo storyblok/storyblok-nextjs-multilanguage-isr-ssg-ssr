@@ -41,7 +41,7 @@ export async function getStaticProps({ locale, locales, params, preview = false 
       locale,
       locales,
     },
-    revalidate: 15, // enable static content to be updated dynamically every 15 sec
+    // revalidate: 15, // enable static content to be updated dynamically every 15 sec
   }
 }
 
@@ -68,6 +68,6 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths: paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
