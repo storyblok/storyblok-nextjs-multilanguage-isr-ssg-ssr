@@ -49,7 +49,6 @@ export async function getStaticPaths({ locales }) {
   let { data } = await Storyblok.get('cdn/links/')
 
   let paths = []
-  console.log(data)
   Object.keys(data.links).forEach(linkKey => {
       if (data.links[linkKey].is_folder) {
         return
